@@ -27,7 +27,33 @@ CREATE TABLE capitals (
 ) INHERITS (cities);
 ```
 
+Insercio de dades a les taules:
 
+```sql
+INSERT INTO capitals VALUES('SP');
+INSERT INTO cities VALUES('DANI',23.50,120);
+INSERT INTO capitals VALUES('ES',145.23,12);
+```
+
+Inserto 2 registres a la taula "capitals" i un a la taula "cities".
+
+Mostro les dades de les taules creades anteriorment.
+
+```sql
+SELECT * FROM capitals;
+```
+
+Tal i com es pot veure en la imatge que ve a continuacio s'han inserit els 2 registres a la taula.
+
+![selectcapitals](img/selectcapitals.png)
+
+```sql
+SELECT * FROM cities;
+```
+
+Tal i com es pot veure a la imatge anterior, s'ha insertat el registre que s'ha inserit amb un insert, i apart s'han inserit els 2 registres de la taula que te herencia de aquesta.
+
+![selectcities](img/selectcities.png)
 
 2. **Per què creieu que s'utilitza el tableoid ? i el pg_class ?**
 
