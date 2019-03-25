@@ -43,6 +43,18 @@ El catàleg pg_class cataloga les taules i la majoria de totes les altres que ti
 
 3. **Al llegir la documentació. Penseu que es pot utilitzar l'herència múltiple en Postgres ? Fiqueu algun exemple**
 
+Si, l'herencia multiple a postgres existeix.
 
+```sql
+CREATE TABLE vehicle ( name text );
+CREATE TABLE boat () INHERITS (vehicle);
+CREATE TABLE car () INHERITS (vehicle);
+
+CREATE TABLE boatcar () INHERITS (boat,car);
+
+INSERT INTO boatcar (name) VALUES ('amphibious car');
+```
+
+A totes les columnes antriors, s'haura inserit a la primera fila : 'amphibious car'.
 
 4. **Identifiqueu algunes limitacions de l'herència en Postgres.  Estudieu com es propaguen les foreign keys o els canvis de taules etc..  d'una classe "pare" o superclasse a les seves classes "filles". Podeu  consultar per les instruccions:`SELECT`, `UPDATE`, `DELETE`, `ALTER TABLE`,  `ALTER TABLE ... RENAME, vauum, reindex`).**
