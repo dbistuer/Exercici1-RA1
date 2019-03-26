@@ -59,7 +59,7 @@ Tal i com es pot veure a la imatge anterior, s'ha insertat el registre que s'ha 
 
 *tableoid*
 
-TABLEOID és un valor sencer d'increment automàtic, únic dins d'una base de dades PostgreSQL (no només una taula) que es pot assignar automàticament a cada fila d'una taula.
+TABLEOID és un valor sencer d'increment automàtic, únic dins d'una base de dades PostgreSQL (no només una taula) que es pot assignar automàticament a cada fila d'una taula. Si un registre s'hereta d'una altra taula com l'instancia d'aquest sera la mateixa tindra el mateix OID.
 
 Tot i que OID es pot utilitzar com a clau primària d’identitat d'una columna(increment automàtic), es recomana utilitzar el tipus de dades SERIAL.
 
@@ -84,3 +84,11 @@ INSERT INTO boatcar (name) VALUES ('amphibious car');
 A totes les columnes antriors, s'haura inserit a la primera fila : 'amphibious car'.
 
 4. **Identifiqueu algunes limitacions de l'herència en Postgres.  Estudieu com es propaguen les foreign keys o els canvis de taules etc..  d'una classe "pare" o superclasse a les seves classes "filles". Podeu  consultar per les instruccions:`SELECT`, `UPDATE`, `DELETE`, `ALTER TABLE`,  `ALTER TABLE ... RENAME, vauum, reindex`).**
+
+La primera limitacio que vec, es que si tu elimines un registre de una superclasse o una classe filla aquest, s'elimina en tots els llocs. I aixo pot ser un problema, ja que si tu vols eliminar un objecte d'una classe filla pero no d'una superclasse aixo no es possible sense canviar el OID. 
+
+
+
+https://iessanvicente.com/colaboraciones/postgreSQL.pdf
+
+https://ioc.xtec.cat/materials/FP/Materials/IC_S_INF/INF_IC_S_M02/web/html/media/fp_dam_m02_u8_pdfindex.pdf
