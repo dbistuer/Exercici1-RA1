@@ -89,7 +89,169 @@ La primera limitacio que vec, es que si tu elimines un registre de una superclas
 
 El suport a orientació a objectes és una simple extensió que ofereix prestacions com l'herència, no un suport complet.
 
+**TAULES:**
 
+```sql
+DROP TABLE IF EXISTS estudiant;
+DROP TABLE IF EXISTS persona;
+
+CREATE TABLE persona (
+    name        text,
+    cognom      text,
+    edat        int
+);
+
+CREATE TABLE estudiant (
+    matricula   int
+) INHERITS (persona);
+```
+
+Creo dues taules:
+
+ - La primera 'persona' te els atributs: nom, cognom i edat.
+ - La segona 'estudiant' nomes conte: matricula. Pero com herede de persona tambe conte: nom, cognom i edat.
+
+**INSERTS:**
+
+```sql
+INSERT INTO persona VALUES('DANI','BISTUER',23);
+```
+
+Inserto dades a la taula pare, i aquests no seran inserits a la taula filla:
+
+![2](img/inserts/2.png)
+
+![1](img/inserts/1.png)
+
+
+
+Pero si ho faig a l'inreves i inserto a la taula filla si que s'inserira a la taula pare i els primers camps son els de la taula pare. per tant el insert a la taula filla ha de ser el seguent:
+
+```SQL
+INSERT INTO estudiant VALUES('ANTONIO','PADILLA',96,123456);
+```
+
+![1](img/inserts/3.png)
+
+![1](img/inserts/4.png)
+
+**UPDATE**
+
+Tant com si faig l'UPDATE desde la taula filla com de la taula pare les dades seran modifeicades per les dues .
+
+​	**TAULA FILLA(estudiant)**
+
+```sql
+		UPDATE estudiant SET name='HERNESTO' WHERE edat=96;
+```
+
+![1](img/update/fill1.png)
+
+![1](img/update/fill2.png)
+
+​		Tal i com pots comprovar els canvis han sigut a les dues taules.
+
+​	**TAULA PARE(persona)**
+
+```sql
+		UPDATE persona SET name='ALBERT' WHERE edat=96;
+```
+
+![1](img/update/pare1.png)
+
+![1](img/update/pare2.png)
+
+​		Tal i com pots comprovar els canvis han sigut a les dues taules.
+
+**DELETE**
+
+Per a fer el delete insertare mes dades a la taula filla per a tenirlos a les dues dades:
+
+```sql
+INSERT INTO estudiant VALUES('PEP','GARCIA',90,123457);
+INSERT INTO estudiant VALUES('JOAN','MARIN',80,123453);
+```
+
+​	**TAULA FILLA(estudiant)**
+
+```sql
+		DELETE FROM estudiant WHERE edat=90;
+```
+
+​		Quant l'elimino, aquest s'elimina de la taula pare:
+
+![1](img/delete/fill1.png)
+
+![1](img/delete/fill2.png)
+
+​	**TAULA PARE(persona)**
+
+```sql
+		DELETE FROM persona WHERE edat=80;
+```
+
+​		Tambe quant l'elimino s'eliminara de la taula filla:
+
+![1](img/delete/pare1.png)
+
+![pare2](img/delete/pare2.png)
+
+**ALTER TABLE**
+
+​	**TAULA PARE(persona)**
+
+​		Inserare una columna a la taula pare, i aquesta tambe s'insertara a l'estudiat.
+
+```sql
+		ALTER TABLE persona ADD COLUMN paisOrigen text;
+```
+
+​		Per tant els inserts amb aquesta nova columna inserida serien aixi:
+
+```SQL
+		INSERT INTO persona VALUES('VICTOR','DARIAS',70,'XINA');
+		INSERT INTO estudiant VALUES('JOAN','MARIN',80,123453,'españa');
+```
+
+​	**TAULA FILLA(estudiant)**
+
+​		Al insertar una columna a la taula filla no li passa res a la taula pare perque no hi ha herencia inversa. Simplement la taula estudiant tindra un nou camp.
+
+```sql
+		ALTER TABLE estudiant ADD COLUMN descripcio text;
+```
+
+ 
+
+RENAME
+
+​	ALTER TABLE products RENAME COLUMN product_no TO product_number;
+
+​	taula
+
+​	ALTER TABLE products RENAME TO items;
+
+vauum
+
+​	To clean a single table onek , analyze it for the optimizer and print a detailed vacuum activity report:
+
+​	VACUUM (VERBOSE, ANALYZE) onek;
+
+reindex
+
+To rename an existing index:
+
+ALTER INDEX distributors RENAME TO suppliers;
+
+To move an index to a different tablespace:
+
+ALTER INDEX distributors SET TABLESPACE fasttablespace;
+
+To change an index’s fill factor (assuming that the index method supports it):
+
+ALTER INDEX distributors SET (fillfactor = 75);
+
+REINDEX INDEX distributors;
 
 https://iessanvicente.com/colaboraciones/postgreSQL.pdf
 
