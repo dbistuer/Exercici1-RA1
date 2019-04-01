@@ -87,6 +87,8 @@ A totes les columnes antriors, s'haura inserit a la primera fila : 'amphibious c
 
 La primera limitacio que vec, es que si tu elimines un registre de una superclasse o una classe filla aquest, s'elimina en tots els llocs. I aixo pot ser un problema, ja que si tu vols eliminar un objecte d'una classe filla pero no d'una superclasse aixo no es possible sense canviar el OID. 
 
+El suport a orientació a objectes és una simple extensió que ofereix prestacions com l'herència, no un suport complet.
+
 
 
 https://iessanvicente.com/colaboraciones/postgreSQL.pdf
