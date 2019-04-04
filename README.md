@@ -224,35 +224,20 @@ INSERT INTO estudiant VALUES('JOAN','MARIN',80,123453);
  
 
 RENAME
+Serveix per a renombrar tant siguin colunes com taules: 
 
-​	ALTER TABLE products RENAME COLUMN product_no TO product_number;
+columnes
+	ALTER TABLE productes RENAME COLUMN no TO numero;
 
-​	taula
+taules
+	ALTER TABLE productes RENAME TO items;
 
-​	ALTER TABLE products RENAME TO items;
+VACUUM
+VACUUM recupera l'emmagatzematge ocupat per tuples morts. En l’operació normal de PostgreSQL, les tuples que s’esborren o queden obsoletes per una actualització no queden físicament retirades de la seva taula; romanen presents fins que es faci un VACUUM. Per tant, cal fer VACUUM periòdicament, especialment en taules actualitzades amb freqüència.
 
-vauum
+REINDEX
+Per canviar el factor d'emplenament d'un índex (assumint que el mètode d'índex ho suporta):
+	ALTER INDEX distributors SET (fillfactor = 75);
 
-​	To clean a single table onek , analyze it for the optimizer and print a detailed vacuum activity report:
+	REINDEX INDEX distributors;
 
-​	VACUUM (VERBOSE, ANALYZE) onek;
-
-reindex
-
-To rename an existing index:
-
-ALTER INDEX distributors RENAME TO suppliers;
-
-To move an index to a different tablespace:
-
-ALTER INDEX distributors SET TABLESPACE fasttablespace;
-
-To change an index’s fill factor (assuming that the index method supports it):
-
-ALTER INDEX distributors SET (fillfactor = 75);
-
-REINDEX INDEX distributors;
-
-https://iessanvicente.com/colaboraciones/postgreSQL.pdf
-
-https://ioc.xtec.cat/materials/FP/Materials/IC_S_INF/INF_IC_S_M02/web/html/media/fp_dam_m02_u8_pdfindex.pdf
