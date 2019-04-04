@@ -221,23 +221,32 @@ INSERT INTO estudiant VALUES('JOAN','MARIN',80,123453);
 		ALTER TABLE estudiant ADD COLUMN descripcio text;
 ```
 
- 
 
-RENAME
-Serveix per a renombrar tant siguin colunes com taules: 
 
-columnes
-	ALTER TABLE productes RENAME COLUMN no TO numero;
+**RENAME**
+​	Serveix per a renombrar tant siguin colunes com taules: 
 
-taules
-	ALTER TABLE productes RENAME TO items;
+**COLUMNES**
 
-VACUUM
-VACUUM recupera l'emmagatzematge ocupat per tuples morts. En l’operació normal de PostgreSQL, les tuples que s’esborren o queden obsoletes per una actualització no queden físicament retirades de la seva taula; romanen presents fins que es faci un VACUUM. Per tant, cal fer VACUUM periòdicament, especialment en taules actualitzades amb freqüència.
+```SQL
+ALTER TABLE productes RENAME COLUMN no TO numero;
+```
 
-REINDEX
-Per canviar el factor d'emplenament d'un índex (assumint que el mètode d'índex ho suporta):
-	ALTER INDEX distributors SET (fillfactor = 75);
+**TAULES**
 
-	REINDEX INDEX distributors;
+```sql
+ALTER TABLE productes RENAME TO items;
+```
+
+**VACUUM**
+​	VACUUM recupera l'emmagatzematge ocupat per tuples morts. En l’operació normal de PostgreSQL, 						les tuples que s’esborren o queden obsoletes per una actualització no queden físicament retirades de la seva taula; romanen presents fins que es faci un VACUUM. Per tant, cal fer VACUUM periòdicament, especialment en taules actualitzades amb freqüència.
+
+**REINDEX**
+​	Per canviar el factor d'emplenament d'un índex (assumint que el mètode d'índex ho suporta):
+
+```sql
+ALTER INDEX distributors SET (fillfactor = 75);
+
+REINDEX INDEX distributors;
+```
 
